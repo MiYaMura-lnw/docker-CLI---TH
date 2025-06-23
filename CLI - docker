@@ -1,0 +1,78 @@
+CLi_Docker 
+คำสั่งทั่วไป (General Commands)
+
+docker -d
+คำสั่ง: Start the docker daemon (เริ่มต้น Docker daemon) 
+ความหมาย: เริ่มต้นโปรแกรมหลักของ Docker ที่ทำงานอยู่เบื้องหลัง 
+docker --help
+คำสั่ง: Get help with Docker (ขอความช่วยเหลือเกี่ยวกับ Docker) 
+ความหมาย: แสดงข้อมูลวิธีใช้คำสั่ง Docker ทั้งหมด หรือคำสั่งย่อยแต่ละคำสั่ง 
+docker info
+คำสั่ง: Display system-wide information (แสดงข้อมูลทั่วทั้งระบบ) 
+ความหมาย: แสดงข้อมูลโดยละเอียดเกี่ยวกับการติดตั้ง Docker และสถานะปัจจุบันของ Docker บนเครื่องของคุณ 
+รูปภาพ (Images)
+
+docker build -t <image_name>
+คำสั่ง: Build an Image from a Dockerfile (สร้างอิมเมจจาก Dockerfile) 
+ความหมาย: สร้างไฟล์แม่แบบ (image) สำหรับการสร้างคอนเทนเนอร์ โดยใช้คำแนะนำจากไฟล์ที่ชื่อ Dockerfile 
+docker build -t <image_name> --no-cache
+คำสั่ง: Build an Image from a Dockerfile without the cache (สร้างอิมเมจจาก Dockerfile โดยไม่ใช้แคช) 
+ความหมาย: เหมือนกับการสร้างอิมเมจ แต่จะสร้างใหม่ทั้งหมดโดยไม่นำส่วนที่เคยสร้างไว้แล้วมาใช้ซ้ำ 
+docker images
+คำสั่ง: List local images (แสดงรายการอิมเมจในเครื่อง) 
+ความหมาย: แสดงรายการไฟล์แม่แบบ (image) Docker ทั้งหมดที่เก็บอยู่ในคอมพิวเตอร์ของคุณ 
+docker rmi <image_name>
+คำสั่ง: Delete an Image (ลบอิมเมจ) 
+ความหมาย: ลบไฟล์แม่แบบ (image) ของ Docker ที่ระบุออกจากเครื่องของคุณ (rmi ย่อมาจาก "remove image") 
+docker image prune
+คำสั่ง: Remove all unused images (ลบอิมเมจที่ไม่ได้ใช้งานทั้งหมด) 
+ความหมาย: ลบไฟล์แม่แบบ (image) Docker ที่ไม่ได้ใช้งานแล้ว เพื่อประหยัดพื้นที่ 
+Docker Hub
+
+docker login -u <username>
+คำสั่ง: Login into Docker (เข้าสู่ระบบ Docker) 
+ความหมาย: เข้าสู่ระบบบัญชี Docker Hub ของคุณ เพื่อสามารถอัปโหลดหรือดาวน์โหลดอิมเมจส่วนตัวได้ 
+docker push <username>/<image_name>
+คำสั่ง: Publish an image to Docker Hub (เผยแพร่อิมเมจไปยัง Docker Hub) 
+ความหมาย: อัปโหลดไฟล์แม่แบบ (image) ที่คุณสร้างขึ้น ไปยัง Docker Hub เพื่อให้คนอื่นใช้งานได้ 
+docker search <image_name>
+คำสั่ง: Search Hub for an image (ค้นหาฮับสำหรับอิมเมจ) 
+ความหมาย: ค้นหาไฟล์แม่แบบ (image) บน Docker Hub 
+docker pull <image_name>
+คำสั่ง: Pull an image from a Docker Hub (ดึงอิมเมจจาก Docker Hub) 
+ความหมาย: ดาวน์โหลดไฟล์แม่แบบ (image) จาก Docker Hub มาเก็บไว้ในเครื่องของคุณ 
+คอนเทนเนอร์ (Containers)
+
+docker run --name <container_name> <image_name>
+คำสั่ง: Create and run a container from an image, with a custom name (สร้างและรันคอนเทนเนอร์จากอิมเมจ โดยมีชื่อที่กำหนดเอง) 
+ความหมาย: สร้างและเปิดใช้งานคอนเทนเนอร์ (โปรแกรมที่ทำงานอยู่) จากไฟล์แม่แบบ (image) ที่ระบุ และตั้งชื่อให้คอนเทนเนอร์นั้น 
+docker run -p <host_port>:<container_port> <image_name>
+คำสั่ง: Run a container with and publish a container's port(s) to the host (รันคอนเทนเนอร์และเผยแพร่พอร์ตของคอนเทนเนอร์ไปยังโฮสต์) 
+ความหมาย: รันคอนเทนเนอร์และทำให้พอร์ต (ช่องทางการสื่อสาร) ของคอนเทนเนอร์สามารถเข้าถึงได้จากคอมพิวเตอร์หลักของคุณ 
+docker run -d <image_name>
+คำสั่ง: Run a container in the background (รันคอนเทนเนอร์ในพื้นหลัง) 
+ความหมาย: รันคอนเทนเนอร์โดยให้ทำงานอยู่เบื้องหลัง ทำให้คุณสามารถใช้งานเทอร์มินัลต่อได้ 
+docker start/stop <container_name> (or <container-id>)
+คำสั่ง: Start or stop an existing container (เริ่มต้นหรือหยุดคอนเทนเนอร์ที่มีอยู่) 
+ความหมาย: เปิดหรือปิดคอนเทนเนอร์ที่คุณสร้างไว้แล้ว 
+docker rm <container_name>
+คำสั่ง: Remove a stopped container (ลบคอนเทนเนอร์ที่หยุดทำงานแล้ว) 
+ความหมาย: ลบคอนเทนเนอร์ที่ปิดอยู่ (rm ย่อมาจาก "remove") 
+docker exec -it <container name> sh
+คำสั่ง: Open a shell inside a running container (เปิดเชลล์ภายในคอนเทนเนอร์ที่กำลังทำงาน) 
+ความหมาย: เข้าไปควบคุมและรันคำสั่งภายในคอนเทนเนอร์ที่กำลังทำงานอยู่ (exec ย่อมาจาก "execute") 
+docker logs -f <container_name>
+คำสั่ง: Fetch and follow the logs of a container (ดึงและติดตามบันทึกของคอนเทนเนอร์) 
+ความหมาย: ดูข้อความบันทึกการทำงานของคอนเทนเนอร์แบบเรียลไทม์ (logs คือ "บันทึก", -f ย่อมาจาก "follow") 
+docker inspect <container_name> (or <container_id>)
+คำสั่ง: To inspect a running container (เพื่อตรวจสอบคอนเทนเนอร์ที่กำลังทำงาน) 
+ความหมาย: ตรวจสอบข้อมูลรายละเอียดทั้งหมดของคอนเทนเนอร์ 
+docker ps
+คำสั่ง: To list currently running containers (เพื่อแสดงรายการคอนเทนเนอร์ที่กำลังทำงานอยู่) 
+ความหมาย: แสดงรายการคอนเทนเนอร์ที่กำลังทำงานอยู่ในขณะนี้ (ps ย่อมาจาก "process status" หรือ "สถานะกระบวนการ") 
+docker ps --all
+คำสั่ง: List all docker containers (running and stopped) (แสดงรายการคอนเทนเนอร์ docker ทั้งหมด (ที่กำลังทำงานและหยุดทำงาน)) 
+ความหมาย: แสดงรายการคอนเทนเนอร์ Docker ทั้งหมด ไม่ว่าจะกำลังทำงานอยู่หรือหยุดไปแล้ว 
+docker container stats
+คำสั่ง: View resource usage stats (ดูสถิติการใช้ทรัพยากร) 
+ความหมาย: ดูข้อมูลการใช้ CPU, หน่วยความจำ, และทรัพยากรอื่นๆ ของคอนเทนเนอร์ที่กำลังทำงาน
